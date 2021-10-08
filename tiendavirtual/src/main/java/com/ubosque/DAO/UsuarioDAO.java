@@ -7,15 +7,13 @@ import javax.swing.JOptionPane;
 
 public class UsuarioDAO {
 
-	// Metodos Crud
-	// Metodo listar Usuarios
 	public ArrayList<Usuario> ListUsers() {
 		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 		Connection connection = new Connection();
 
-		
 		try {
-			PreparedStatement statement = connection.getConnection().prepareStatement("SELECT * FROM usuarios Where cedula_usuario !=1");
+			PreparedStatement statement = connection.getConnection()
+					.prepareStatement("SELECT * FROM usuarios Where cedula_usuario !=1");
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
 				Usuario usuario = new Usuario();
@@ -29,20 +27,23 @@ public class UsuarioDAO {
 			}
 			result.close();
 			statement.close();
+			connection.connection.close();
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "no se pudo realizar la consulta\n" + e);
+			System.out.println(e.getMessage());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
 		return usuarios;
 	}
 
-	// Metodo para listar 1 usuario por su cedula en un arrayList
 	public ArrayList<Usuario> ListUser(int cedula_usuario) {
 		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 		Connection connection = new Connection();
 
 		try {
-			PreparedStatement statement = connection.getConnection().prepareStatement("SELECT * FROM usuarios WHERE cedula_usuario=?");
-			statement.setInt(1,cedula_usuario);
+			PreparedStatement statement = connection.getConnection()
+					.prepareStatement("SELECT * FROM usuarios WHERE cedula_usuario=?");
+			statement.setInt(1, cedula_usuario);
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
 				Usuario usuario = new Usuario();
@@ -56,13 +57,13 @@ public class UsuarioDAO {
 			}
 			result.close();
 			statement.close();
+			connection.connection.close();
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "no se pudo realizar la consulta\n" + e);
+			System.out.print("no se pudo realizar la consulta");
 		}
 		return usuarios;
 	}
 
-	// Metodo para crear un nuevo usuario
 	public void createUser(Usuario usuario) {
 		Connection connection = new Connection();
 		try {
@@ -82,7 +83,6 @@ public class UsuarioDAO {
 		}
 	}
 
-	// Metodo Eliminar usaurio por su cedula registrada
 	public void deleteUser(int cedula_usuario) {
 		Connection connection = new Connection();
 		try {
@@ -97,7 +97,6 @@ public class UsuarioDAO {
 		}
 	}
 
-	// Metodo para actualizar usuario por su cedula registrada
 	public void updateUser(Usuario usuario) {
 		Connection connection = new Connection();
 		try {
@@ -115,6 +114,10 @@ public class UsuarioDAO {
 				statement.setInt(5, usuario.getCedulaUsuario());
 				statement.executeUpdate();
 				System.out.println("Se modificó el usuario\n");
+
+				resultSet.close();
+				statement.close();
+				connection.connection.close();
 			} else {
 				System.out.println("El usuario no se encuentra registrado en el instituto");
 			}
@@ -125,8 +128,7 @@ public class UsuarioDAO {
 			System.out.println(e.getMessage());
 		}
 	}
-	
-	//Metodo Login para autenticación de usaurios registrados en la tienda generica
+
 	public int login(String usuario, String password) {
 		Connection connection = new Connection();
 		int cedula = 0;
@@ -140,7 +142,7 @@ public class UsuarioDAO {
 				cedula = Integer.parseInt(resultSet.getString("cedula_usuario"));
 				System.out.println("Existe el usuario \n");
 			} else {
-				cedula=0;
+				cedula = 0;
 				System.out.println("El usuario no se encuentra registrado en la tienda generica");
 			}
 			resultSet.close();
@@ -149,11 +151,11 @@ public class UsuarioDAO {
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
-		
-		if(usuario=="admininicial" && password=="admin123456") {
-			cedula=1;
+
+		if (usuario == "admininicial" && password == "admin123456") {
+			cedula = 1;
 		}
-		
+
 		return cedula;
 	}
 }

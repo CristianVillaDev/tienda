@@ -96,7 +96,9 @@ $(document).ready(function(){
 	}
 
 	$(document).on('click','.borrar',(response)=> {
-		const nitProveedor = $(".borrar").attr('id');
+		const nit_p = $(this)[0].activeElement;
+		const nitproveedor = $(nit_p).attr('id');
+		
  		$.ajax({
 			type:"DELETE",
 			url:"http://localhost:8080/proveedores/eliminar/"+nitProveedor,
@@ -142,7 +144,8 @@ $(document).ready(function(){
 		
 		var btnCancelar = $("#cancelarOP");
 		btnCancelar.css("display","none");
-		$("#cedula").removeAttr('disabled');
+		$("#nit").removeAttr('disabled');
+		
 	});
 	
 	
@@ -168,5 +171,18 @@ $(document).ready(function(){
 		
 	});
 	
+	$("#cerrar").on("click",(response)=>{
+		console.log("click");
+		limpiadoCamposModal();
+	});
+	
+	function limpiadoCamposModal(){
+		      
+				$("#nit_modal").html("");
+			 	$("#ciudad_modal").html("");
+			  	$("#direccion_modal").html("");
+			 	$("#nombre_modal").html("");
+			 	$("#telefono_modal").html("");
+	}
 	
 });

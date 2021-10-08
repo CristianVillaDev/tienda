@@ -32,6 +32,7 @@ public class ProductoDAO {
 			}
 
 			statement.close();
+			connection.connection.close();
 			result.close();
 
 		} catch (SQLException e) {
@@ -76,7 +77,7 @@ public class ProductoDAO {
 	public void createProduct(Productos producto) {
 		Connection connection = new Connection();
 		try {
-			String query = "insert into productos (codigo_producto,ivacompra,nitproveedor,nombre_producto,precio_compra,precio_venta) values(?,?,?,?,?,?)";
+			String query = "insert into productos (codigo_producto,ivaventa,nitproveedor,nombre_producto,precio_compra,precio_venta) values(?,?,?,?,?,?)";
 			PreparedStatement statement = connection.getConnection().prepareStatement(query);
 			statement.setInt(1, producto.getCodigoProducto());
 			statement.setDouble(2, producto.getIvaCompra());
@@ -90,8 +91,8 @@ public class ProductoDAO {
 			System.out.println("Se agregó el producto");
 
 			statement.close();
-
 			connection.connection.close();
+
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
@@ -107,7 +108,7 @@ public class ProductoDAO {
 			ResultSet result = statement.executeQuery();
 
 			if (result.next()) {
-				query = "update productos set ivacompra =?,nitproveedor=?,nombre_producto=?,precio_compra=?,precio_venta=? where codigo_producto=?";
+				query = "update productos set ivaventa =?,nitproveedor=?,nombre_producto=?,precio_compra=?,precio_venta=? where codigo_producto=?";
 				statement = connection.getConnection().prepareStatement(query);
 
 				statement.setDouble(1, producto.getIvaCompra());
@@ -119,20 +120,41 @@ public class ProductoDAO {
 
 				statement.executeUpdate();
 
+				result.close();
+				connection.connection.close();
+				statement.close();
+
 				System.out.println("Se actualizo el producto");
-			}else {
+			} else {
 				System.out.print("Ha ocurrido un error - el usuario no existe");
 			}
 
+			result.close();
 			statement.close();
-
 			connection.connection.close();
 
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
 	}
+	public void deleteAllProduct( ) {
+		
+		Connection connection = new Connection();
+		try {
+			String query = "delete from productos";
+			PreparedStatement statement = connection.getConnection().prepareStatement(query);
+			statement.executeUpdate();
 
+			System.out.println("Se elimino el producto");
+
+			statement.close();
+			connection.connection.close();
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		
+	}
 	public void deleteProduct(int codigoProducto) {
 		Connection connection = new Connection();
 		try {
@@ -145,7 +167,6 @@ public class ProductoDAO {
 			System.out.println("Se elimino el producto");
 
 			statement.close();
-
 			connection.connection.close();
 
 		} catch (SQLException e) {

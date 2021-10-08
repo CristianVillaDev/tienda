@@ -97,7 +97,8 @@ $(document).ready(function(){
 	}
 
 	$(document).on('click','.borrar',(response)=> {
-		const cedula = $(".borrar").attr('id');
+		const cedula_p = $(this)[0].activeElement;
+		const cedula = $(cedula_p).attr('id');
 
  		$.ajax({
 			type:"DELETE",
@@ -173,5 +174,16 @@ $(document).ready(function(){
 		
 	});
 	
+	$("#cerrar").on("click",(response)=>{
+		limpiadoCamposModal();
+	});
+	
+	function limpiadoCamposModal(){
+		       $("#cedula_modal").html("");
+			 	$("#email_modal").html("");
+			  	$("#nombre_modal").html("");
+			 	$("#telefono_modal").html("");
+			 	$("#direccion_modal").html("");
+	}
 	
 });

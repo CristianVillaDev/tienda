@@ -88,8 +88,8 @@
 					</div>
 
 					<div class="form-group">
-						<label for="telefono">Telefono</label> <input type="text"
-							class="form-control" id="telefono" placeholder="Ingresar telefono" required>
+						<label for="telefono">Telefono</label> <input type="number"
+							class="form-control" id="telefono" placeholder="Ingresar telefono" required  min="1" max="9999999999">
 					</div>
 
 					<div class="row">
@@ -129,7 +129,7 @@
 				
 			</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
+					<button id="cerrar" type="button" class="btn btn-secondary"
 						data-bs-dismiss="modal">Close</button>
 				</div>
 			</div>

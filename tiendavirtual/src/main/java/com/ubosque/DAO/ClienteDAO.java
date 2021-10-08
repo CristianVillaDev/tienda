@@ -10,16 +10,13 @@ import com.ubosque.DTO.Clientes;
 
 public class ClienteDAO {
 
-	
-	// Metodo listar clientes
 	public ArrayList<Clientes> listarClientes() {
 		ArrayList<Clientes> clientes = new ArrayList<Clientes>();
 		Connection connection = new Connection();
 		try {
-			PreparedStatement statement = connection.getConnection().prepareStatement("Select * from Clientes");
+			PreparedStatement statement = connection.getConnection().prepareStatement("Select * from clientes");
 			ResultSet result = statement.executeQuery();
 
-			
 			while (result.next()) {
 				Clientes cliente = new Clientes();
 				cliente.setCedulaCliente(result.getInt("cedula_cliente"));
@@ -30,11 +27,12 @@ public class ClienteDAO {
 
 				clientes.add(cliente);
 			}
-			// cerrar conexion con la BD
+
 			result.close();
 			statement.close();
+			connection.connection.close();
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "no se pudo realizar la consulta\n" + e);
+			System.out.println(e.getMessage());
 		}
 		return clientes;
 	}
@@ -57,6 +55,7 @@ public class ClienteDAO {
 				System.out.print("Ha ocurrido un error");
 			}
 
+			connection.connection.close();
 			statement.close();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -77,8 +76,9 @@ public class ClienteDAO {
 			} else {
 				System.out.print("Ha ocurrido un error");
 			}
+			connection.connection.close();
 			statement.close();
-			
+
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
@@ -88,7 +88,8 @@ public class ClienteDAO {
 		Connection connection = new Connection();
 
 		try {
-			PreparedStatement statement = connection.getConnection().prepareStatement("select * from clientes where cedula_cliente = ?");
+			String query = "select * from clientes where cedula_cliente = ? ";
+			PreparedStatement statement = connection.getConnection().prepareStatement(query);
 			statement.setInt(1, cliente.getCedulaCliente());
 			ResultSet result = statement.executeQuery();
 
@@ -106,10 +107,15 @@ public class ClienteDAO {
 				if (result2 == 1) {
 					System.out.print("Usuario actualizado");
 				}
+
+				connection.connection.close();
+				result.close();
+				statement.close();
 			} else {
 				System.out.print("Ha ocurrido un error");
 			}
 			result.close();
+			connection.connection.close();
 			statement.close();
 
 		} catch (SQLException e) {
@@ -135,8 +141,11 @@ public class ClienteDAO {
 				cliente.setTelefonoCliente(result.getString("telefono_cliente"));
 				clientes.add(cliente);
 			}
+
 			result.close();
+			connection.connection.close();
 			statement.close();
+
 		} catch (SQLException e) {
 			System.out.print(e.getMessage());
 			System.out.print("listar");

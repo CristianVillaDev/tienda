@@ -51,7 +51,9 @@ public class ProductoController {
 	public int agregarProducto(@RequestParam("file") MultipartFile file) throws IOException {
 		int contador2 = 0;
 		if (file != null) {
-
+			ProductoDAO p = new ProductoDAO();
+			p.deleteAllProduct();
+			
 			java.nio.file.Path productos = Paths.get("src//main//resources//documentosCSV");
 			String ruta = productos.toFile().getAbsolutePath();
 			file.transferTo(new File(ruta + "//" + file.getOriginalFilename()));
@@ -68,18 +70,20 @@ public class ProductoController {
 					Productos producto = new Productos();
 
 					String[] data = row.split(",");
-					producto.setCodigoProducto(Integer.parseInt(data[0]));
-					producto.setNombreProducto(data[1]);
-					producto.setNitProveedor(Integer.parseInt(data[2]));
-					producto.setPrecioCompra(Double.parseDouble(data[3]));
-					producto.setIvaCompra(Double.parseDouble(data[4]));
-					producto.setPrecioVenta(Double.parseDouble(data[5]));
+					producto.setCodigoProducto(Integer.parseInt(data[0].replaceAll("\"", "")));
+					producto.setNombreProducto(data[1].replaceAll("\"", ""));
+					producto.setNitProveedor(Integer.parseInt(data[2].replaceAll("\"", "")));
+					producto.setPrecioCompra(Double.parseDouble(data[3].replaceAll("\"", "")));
+					producto.setIvaCompra(Double.parseDouble(data[4].replaceAll("\"", "")));
+					producto.setPrecioVenta(Double.parseDouble(data[5].replaceAll("\"", "")));
 					ProductoDAO productoDAO = new ProductoDAO();
 
 					productoDAO.createProduct(producto);
 				}
 			}
 			csvReader.close();
+		}else {
+			System.out.println("No se a cargado correctamente el archivo! ");
 		}
 		return contador2;
 	}

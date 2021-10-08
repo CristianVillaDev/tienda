@@ -87,10 +87,9 @@
 					</div>
 
 					<div class="form-group">
-						<label for="clave">Telefono</label> <input type="text"
-							class="form-control" id="telefono" placeholder="Ingresar telefono" required>
+						<label for="clave">Telefono</label> <input type="number"
+							class="form-control" id="telefono" placeholder="Ingresar telefono" required min="1" max="9999999999">
 					</div>
-
 
 					<div class="row">
 						<div class="col-md-8">
@@ -129,14 +128,12 @@
 				
 			</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
+					<button id="cerrar" type="button" class="btn btn-secondary"
 						data-bs-dismiss="modal">Close</button>
 				</div>
 			</div>
 		</div>
 	</div>
-
-
 
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
 		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="

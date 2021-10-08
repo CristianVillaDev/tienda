@@ -12,7 +12,6 @@ import com.ubosque.DTO.Proveedores;
 
 public class ProveedorDAO {
 
- 
 	public ArrayList<Proveedores> listarProveedores() {
 		ArrayList<Proveedores> proveedores = new ArrayList<Proveedores>();
 		Connection connection = new Connection();
@@ -30,16 +29,17 @@ public class ProveedorDAO {
 
 				proveedores.add(proveedor);
 			}
-			// cerrar conexion con la BD
+
 			result.close();
 			statement.close();
+			connection.connection.close();
+
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "no se pudo realizar la consulta\n" + e);
 		}
 		return proveedores;
 	}
 
- 
 	public void crearProveedor(Proveedores proveedor) {
 		Connection connection = new Connection();
 		try {
@@ -58,13 +58,14 @@ public class ProveedorDAO {
 				System.out.print("Ha ocurrido un error");
 			}
 
+			connection.connection.close();
 			statement.close();
+
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
 	}
 
- 
 	public void deleteProveedor(int nitproveedor) {
 		Connection connection = new Connection();
 
@@ -82,6 +83,7 @@ public class ProveedorDAO {
 				System.out.print("Ha ocurrido un error");
 			}
 
+			connection.connection.close();
 			statement.close();
 
 		} catch (SQLException e) {
@@ -89,7 +91,6 @@ public class ProveedorDAO {
 		}
 	}
 
- 
 	public void updateProveedor(Proveedores proveedor) {
 		Connection connection = new Connection();
 
@@ -113,6 +114,11 @@ public class ProveedorDAO {
 				if (result2 == 1) {
 					System.out.print("Usuario actualizado");
 				}
+
+				result.close();
+				statement.close();
+				connection.connection.close();
+
 			} else {
 				System.out.print("Ha ocurrido un error");
 			}
@@ -124,11 +130,10 @@ public class ProveedorDAO {
 		}
 	}
 
- 
 	public ArrayList<Proveedores> listarProveedor(int nitproveedor) {
 		ArrayList<Proveedores> proveedores = new ArrayList<Proveedores>();
 		Connection connection = new Connection();
-		
+
 		try {
 			PreparedStatement statement = connection.getConnection()
 					.prepareStatement("select * from proveedores where nitproveedor=?");
@@ -145,15 +150,16 @@ public class ProveedorDAO {
 
 				proveedores.add(proveedor);
 			}
-			
+
 			result.close();
 			statement.close();
+			connection.connection.close();
+
 		} catch (SQLException e) {
 			System.out.print(e.getMessage());
 			System.out.print("listar");
 		}
-		
+
 		return proveedores;
 	}
-
 }

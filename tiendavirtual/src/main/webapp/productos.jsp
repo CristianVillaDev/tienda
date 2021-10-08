@@ -41,7 +41,7 @@
 		<p id="error"></p>
 		<div class="mx-auto mt-5" style="width: 200px;">
 			<form id="formulario">
-				<input class="mx-auto" id="file"  type="file">
+				<input class="mx-auto" id="file"  type="file" accept=".csv" required>
 				<button type="submit">Cargar</button>
 			</form>
 		</div>

@@ -81,7 +81,6 @@ $(document).ready(function(){
 							<td style="font-size: 13px" ><button id="${usuario.cedulaUsuario}"   type="button" class="btn btn-info ver p-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Ver</button></td>
 							<td style="font-size: 13px" ><button id="${usuario.cedulaUsuario}"   type="button" class="btn btn-info modificar p-1">Modificar</button></td>
 							<td style="font-size: 13px" ><button id="${usuario.cedulaUsuario}"   type="button" class="btn btn-danger borrar p-1" >Eliminar</button></td>
-							
 						</tr>
 					`
 				});
@@ -91,7 +90,9 @@ $(document).ready(function(){
 	}
 
 	$(document).on('click','.borrar',(response)=> {
-		const cedula = $(".borrar").attr('id');
+		const nit_p = $(this)[0].activeElement;
+		const nitproveedor = $(nit_p).attr('id');
+		
  		$.ajax({
 			type:"DELETE",
 			url:"http://localhost:8080/usuarios/eliminar/"+cedula,
@@ -148,7 +149,6 @@ $(document).ready(function(){
 			type:"GET",
 			url:"http://localhost:8080/usuarios/listar/"+cedula_usuario,
 			success: function(response){
-
 				const usuario = response[0];
 
 				$("#cedula_modal").html(usuario.cedulaUsuario);
@@ -162,5 +162,16 @@ $(document).ready(function(){
 		
 	});
 	
+	$("#cerrar").on("click",(response)=>{
+		limpiadoCamposModal();
+	});
+	
+	function limpiadoCamposModal(){
+		       $("#cedula_modal").html("");
+			 	$("#email_modal").html("");
+			  	$("#nombre_modal").html("");
+			 	$("#clave_modal").html("");
+			 	$("#usuario_modal").html("");
+	}
 	
 });
