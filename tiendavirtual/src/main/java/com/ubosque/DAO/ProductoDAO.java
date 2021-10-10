@@ -145,7 +145,7 @@ public class ProductoDAO {
 			PreparedStatement statement = connection.getConnection().prepareStatement(query);
 			statement.executeUpdate();
 
-			System.out.println("Se elimino el producto");
+			System.out.println("Se eliminarion los productos");
 
 			statement.close();
 			connection.connection.close();

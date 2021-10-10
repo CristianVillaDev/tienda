@@ -101,7 +101,7 @@ $(document).ready(function(){
 		
  		$.ajax({
 			type:"DELETE",
-			url:"http://localhost:8080/proveedores/eliminar/"+nitProveedor,
+			url:"http://localhost:8080/proveedores/eliminar/"+nitproveedor,
 			success: function(response){
 				listado();
 				alert("Datos del proveedor Borrados");
