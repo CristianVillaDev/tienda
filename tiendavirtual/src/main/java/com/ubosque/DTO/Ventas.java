@@ -9,8 +9,6 @@ public class Ventas {
 	private double totalVenta;
 	private double valorVenta;
 	
-	
-	
 	public int getCodigoVenta() {
 		return codigoVenta;
 	}

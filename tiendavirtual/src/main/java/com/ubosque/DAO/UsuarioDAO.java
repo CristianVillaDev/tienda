@@ -59,7 +59,7 @@ public class UsuarioDAO {
 			statement.close();
 			connection.connection.close();
 		} catch (SQLException e) {
-			System.out.print("no se pudo realizar la consulta");
+			System.out.println("no se pudo realizar la consulta");
 		}
 		return usuarios;
 	}
