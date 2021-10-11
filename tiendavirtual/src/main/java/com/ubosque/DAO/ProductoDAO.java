@@ -10,7 +10,6 @@ import com.ubosque.DTO.Productos;
 public class ProductoDAO {
 
 	public ArrayList<Productos> listarProductos() {
-
 		ArrayList<Productos> productos = new ArrayList<>();
 		Connection connection = new Connection();
 		try {
@@ -25,7 +24,7 @@ public class ProductoDAO {
 				producto.setNombreProducto(result.getString("nombre_producto"));
 				producto.setNitProveedor(result.getInt("nitproveedor"));
 				producto.setPrecioCompra(result.getDouble("precio_compra"));
-				producto.setIvaCompra(result.getDouble("ivacompra"));
+				producto.setIvaCompra(result.getDouble("ivaventa"));
 				producto.setPrecioVenta(result.getDouble("precio_venta"));
 
 				productos.add(producto);
@@ -58,7 +57,7 @@ public class ProductoDAO {
 				producto.setNombreProducto(result.getString("nombre_producto"));
 				producto.setNitProveedor(result.getInt("nitproveedor"));
 				producto.setPrecioCompra(result.getDouble("precio_compra"));
-				producto.setIvaCompra(result.getDouble("ivacompra"));
+				producto.setIvaCompra(result.getDouble("ivaventa"));
 				producto.setPrecioVenta(result.getDouble("precio_venta"));
 
 				productos.add(producto);
@@ -126,7 +125,7 @@ public class ProductoDAO {
 
 				System.out.println("Se actualizo el producto");
 			} else {
-				System.out.print("Ha ocurrido un error - el usuario no existe");
+				System.out.print("Ha ocurrido un error - el producto no existe");
 			}
 
 			result.close();
@@ -137,8 +136,8 @@ public class ProductoDAO {
 			System.out.println(e.getMessage());
 		}
 	}
+	
 	public void deleteAllProduct( ) {
-		
 		Connection connection = new Connection();
 		try {
 			String query = "delete from productos";

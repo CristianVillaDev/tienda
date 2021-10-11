@@ -20,7 +20,7 @@ public class VentaDAO {
 			while (resultSet.next()) {
 				Ventas venta = new Ventas();
 				venta.setCodigoVenta(resultSet.getInt("codigo_venta"));
-				venta.setCedulaCliente(resultSet.getInt("codigo_cliente"));
+				venta.setCedulaCliente(resultSet.getInt("cedula_cliente"));
 				venta.setCedulaUsuario(resultSet.getInt("cedula_usuario"));
 				venta.setIvaVenta(resultSet.getDouble("ivaventa"));
 				venta.setTotalVenta(resultSet.getDouble("total_venta"));
@@ -35,20 +35,62 @@ public class VentaDAO {
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
+		return ventas;
+	}
 
+	public ArrayList<Ventas> listarVenta(int codigo_venta) {
+		ArrayList<Ventas> ventas = new ArrayList<>();
+		Connection connection = new Connection();
+		try {
+			String query = "select * from ventas where codigo_venta=?";
+			PreparedStatement statement = connection.getConnection().prepareStatement(query);
+			statement.setInt(1, codigo_venta);
+			ResultSet resultSet = statement.executeQuery();
+
+			while (resultSet.next()) {
+				Ventas venta = new Ventas();
+				venta.setCodigoVenta(resultSet.getInt("codigo_venta"));
+				venta.setCedulaCliente(resultSet.getInt("cedula_cliente"));
+				venta.setCedulaUsuario(resultSet.getInt("cedula_usuario"));
+				venta.setIvaVenta(resultSet.getDouble("ivaventa"));
+				venta.setTotalVenta(resultSet.getDouble("total_venta"));
+				venta.setValorVenta(resultSet.getDouble("valor_venta"));
+
+				ventas.add(venta);
+			}
+			statement.close();
+			resultSet.close();
+			connection.connection.close();
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
 		return ventas;
 	}
 
 	public void addVenta(Ventas venta) {
 		Connection connection = new Connection();
 		try {
-			String query = "insert into ventas (cedula_cliente,cedula_usuario,ivaventa,total_venta,valor_venta) values(?,?,?,?,?)";
+
+			String query = "select max(codigo_venta) as codigo_v from ventas";
 			PreparedStatement statement = connection.getConnection().prepareStatement(query);
-			statement.setInt(1, venta.getCedulaCliente());
-			statement.setInt(2, venta.getCedulaUsuario());
-			statement.setDouble(3, venta.getIvaVenta());
-			statement.setDouble(4, venta.getValorVenta());
+
 			ResultSet resultSet = statement.executeQuery();
+			int codigo_venta = 0;
+			while (resultSet.next()) {
+				codigo_venta = resultSet.getInt("codigo_v");
+			}
+
+			query = "insert into ventas (codigo_venta,cedula_cliente,cedula_usuario,ivaventa,total_venta,valor_venta) values(?,?,?,?,?,?)";
+			statement = connection.getConnection().prepareStatement(query);
+			statement.setInt(1, codigo_venta + 1);
+			statement.setInt(2, venta.getCedulaCliente());
+			statement.setInt(3, venta.getCedulaUsuario());
+			statement.setDouble(4, venta.getIvaVenta());
+			statement.setDouble(5, venta.getTotalVenta());
+			statement.setDouble(6, venta.getValorVenta());
+
+			resultSet = statement.executeQuery();
 
 			if (resultSet != null) {
 				System.out.println("Venta agregada");
@@ -68,7 +110,6 @@ public class VentaDAO {
 	public void deleteVentas(int codigoVentas) {
 		Connection connection = new Connection();
 		try {
-
 			String query = "delete from ventas where codigo_venta = ?";
 			PreparedStatement statement = connection.getConnection().prepareStatement(query);
 			statement.setInt(1, codigoVentas);
@@ -79,11 +120,44 @@ public class VentaDAO {
 			} else {
 				System.out.print("Ha ocurrido un error");
 			}
-			
+
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
-
 	}
 
+	public void updateVenta(Ventas venta, int codigo_venta) {
+		Connection connection = new Connection();
+		try {
+			String query = "select * from ventas where codigo_venta =?";
+
+			PreparedStatement statement = connection.getConnection().prepareStatement(query);
+			statement.setInt(1, codigo_venta);
+			ResultSet result = statement.executeQuery();
+
+			while (result.next()) {
+				query = "update ventas set cedula_cliente = ?, cedula_usuario =?,ivaventa=?,total_venta=?,valor_venta=? where codigo_venta=?";
+				statement = connection.getConnection().prepareStatement(query);
+				statement.setInt(1, venta.getCedulaCliente());
+				statement.setInt(2, venta.getCedulaUsuario());
+				statement.setDouble(3, venta.getIvaVenta());
+				statement.setDouble(4, venta.getTotalVenta());
+				statement.setDouble(5, venta.getValorVenta());
+				statement.setInt(6, codigo_venta);
+
+				int resultado = statement.executeUpdate();
+				if (resultado == 1) {
+					System.out.print("Venta actualizada");
+				} else {
+					System.out.print("Venta No actualizada");
+				}
+			}
+			statement.close();
+			result.close();
+			connection.connection.close();
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
 }
