@@ -30,7 +30,7 @@
 					<li class="nav-item"><a class="nav-link active" href="#">Productos
 						<span class="visually-hidden">(current)</span>
 					</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Ventas</a></li>
+					<li class="nav-item"><a class="nav-link" href="ventas.jsp">Ventas</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Reportes</a></li>
 				</ul>
 			</div>

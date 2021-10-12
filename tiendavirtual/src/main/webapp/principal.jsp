@@ -22,15 +22,13 @@
 
 			<div class="collapse navbar-collapse" id="navbarColor03">
 				<ul class="navbar-nav me-auto">
-					<li class="nav-item"><a class="nav-link active" href="usuarios.jsp">Usuarios
-							<span class="visually-hidden">(current)</span>
-					</a></li>
+					<li class="nav-item"><a class="nav-link " href="usuarios.jsp">Usuarios</a></li>
 					<li class="nav-item"><a class="nav-link" href="clientes.jsp">Clientes</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="proveedores.jsp">Proveedores</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="productos.jsp">Productos</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Ventas</a></li>
+					<li class="nav-item"><a class="nav-link" href="ventas.jsp">Ventas</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Reportes</a></li>
 				</ul>
 			</div>

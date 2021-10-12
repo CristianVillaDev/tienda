@@ -1,6 +1,6 @@
 package com.ubosque.DTO;
 
-public class DetalleVentas {
+public class DetallesVentas {
 
 	private int codigoDetalleVenta;
 	private int cantidadProducto;
