@@ -22,7 +22,7 @@
 
 			<div class="collapse navbar-collapse" id="navbarColor03">
 				<ul class="navbar-nav me-auto">
-					<li class="nav-item"><a class="nav-link " href="#">Usuarios</a></li>
+					<li class="nav-item"><a class="nav-link " href="usuarios.jsp">Usuarios</a></li>
 					<li class="nav-item"><a class="nav-link" href="clientes.jsp">Clientes</a>
 					</li>
 					<li class="nav-item"><a class="nav-link"
@@ -31,28 +31,28 @@
 					<li class="nav-item"><a class="nav-link active" href="#">Ventas
 							<span class="visually-hidden">(current)</span>
 					</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Reportes</a></li>
+					<li class="nav-item"><a class="nav-link" href="reportes.sjp">Reportes</a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 
-	<div class="container-fluid row bg-info ">
-		<div class="row bg-danger p-4">
-			<div class="col-md-4 p-3 bg-info">
+	<div class="container-fluid " style="background: #C6BDBB;">
+		<div class="row p-4">
+			<div class="col-md-6 p-3  ">
 
-				<form id="formulario_cedula_cliente" class="bg-success">
-					<div class="row">
-						<div class="col-sm-2">
-							<h5 class="mt-3">Cedula</h5>
+				<form id="formulario_cedula_cliente">
+					<div class="row p-1">
+						<div class="col-md-2">
+							<h6 class="mt-3 ml-2">Cedula</h6>
 						</div>
-						<div class="col-sm-4">
+						<div class="col-md-5">
 							<div class="form-group">
 								<input type="text" class="form-control" id="cedula"
 									placeholder="Ingresar cedula" required>
 							</div>
 						</div>
-						<div class="col-sm-4">
+						<div class="col-md-5">
 							<button type="submit" class="btn btn-primary">Consultar</button>
 						</div>
 					</div>
@@ -60,11 +60,10 @@
 
 			</div>
 
-			<div class="col-md-4 p-3 bg-success">
-
+			<div class="col-md-3 p-3 ">
 				<div class="row">
 					<div class="col">
-						<h5 class="mt-3">Cedula</h5>
+						<h6 class="mt-3">Cliente</h6>
 					</div>
 					<div class="col">
 						<input disabled type="text" id="cedula_cliente"
@@ -73,10 +72,10 @@
 				</div>
 			</div>
 
-			<div class="col-md-4 p-3 bg-info">
+			<div class="col-md-3 p-3">
 				<div class="row">
 					<div class="col">
-						<h5 class="mt-3">Consecutivo</h5>
+						<h6 class="mt-3">Consecutivo</h6>
 					</div>
 					<div class="col">
 						<input disabled type="text" id="codigo_consecutivo"
@@ -85,7 +84,60 @@
 				</div>
 			</div>
 		</div>
+	</div>
 
+	<div class="container-fluid bg-info">
+		<div class="bg-danger p-4">
+			<table class="mx-auto">
+				<thead>
+					<tr>
+						<td>Codigo producto</td>
+						<td>Cantidad</td>
+						<td>Valor total</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><select id="listado"
+							class="listado form-select form-select-sm">
+								<option>Seleccione producto</option>
+						</select></td>
+
+						<td><input type="number" class="form-control form-control-sm"
+							max="2"></td>
+
+						<td><input type="number" class="form-control form-control-sm" disabled></td>
+					</tr>
+					<tr>
+						<td><select id="listado"
+							class="listado form-select form-select-sm">
+								<option>Seleccione producto</option>
+						</select></td>
+
+						<td><input type="number" class="form-control form-control-sm"
+							max="2"></td>
+
+						<td><input type="number" class="form-control form-control-sm" disabled></td>
+					</tr>
+					<tr>
+						<td><select id="listado"
+							class="listado form-select form-select-sm">
+								<option value="0">Seleccione producto</option>
+						</select></td>
+
+						<td><input type="number" class="form-control form-control-sm"
+							max="2"></td>
+
+						<td><input type="number" class="form-control form-control-sm"disabled></td>
+					</tr>
+					
+				</tbody>
+			</table>
+		
+						<button>Agregar otro producto</button>
+				
+		</div>
+	
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js"
 			integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 			crossorigin="anonymous"></script>
@@ -94,6 +146,6 @@
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"
 			integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/"
 			crossorigin="anonymous"></script>
-		<script src="scripts/usuarios.js"></script>
+		<script src="scripts/ventas.js"></script>
 </body>
 </html>

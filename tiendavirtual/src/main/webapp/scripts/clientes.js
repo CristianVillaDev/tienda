@@ -87,7 +87,6 @@ $(document).ready(function(){
 							<td style="font-size: 13px" ><button id="${cliente.cedulaCliente}"   type="button" class="btn btn-info ver p-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Ver</button></td>
 							<td style="font-size: 13px" ><button id="${cliente.cedulaCliente}"   type="button" class="btn btn-info modificar p-1">Modificar</button></td>
 							<td style="font-size: 13px" ><button id="${cliente.cedulaCliente}"   type="button" class="btn btn-danger borrar p-1" >Eliminar</button></td>
-							
 						</tr>
 					`
 				});
