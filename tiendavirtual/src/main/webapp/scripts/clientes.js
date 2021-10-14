@@ -177,6 +177,8 @@ $(document).ready(function(){
 		limpiadoCamposModal();
 	});
 	
+	
+	
 	function limpiadoCamposModal(){
 		       $("#cedula_modal").html("");
 			 	$("#email_modal").html("");

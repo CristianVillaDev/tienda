@@ -6,6 +6,7 @@
 <meta charset="ISO-8859-1">
 <title>Tienda Generica</title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/ventas.css">
 </head>
 <body>
 	<h2>TIENDA GENERICA</h2>
@@ -37,11 +38,11 @@
 		</div>
 	</nav>
 
+
 	<div class="container-fluid " style="background: #C6BDBB;">
 		<div class="row p-4">
 			<div class="col-md-6 p-3  ">
-
-				<form id="formulario_cedula_cliente">
+				<form id="formulario_cedula">
 					<div class="row p-1">
 						<div class="col-md-2">
 							<h6 class="mt-3 ml-2">Cedula</h6>
@@ -86,66 +87,94 @@
 		</div>
 	</div>
 
-	<div class="container-fluid bg-info">
-		<div class="bg-danger p-4">
-			<table class="mx-auto">
-				<thead>
-					<tr>
-						<td>Codigo producto</td>
-						<td>Cantidad</td>
-						<td>Valor total</td>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td><select id="listado"
-							class="listado form-select form-select-sm">
-								<option>Seleccione producto</option>
-						</select></td>
+	<div class="container-fluid ">
+		<div class="row">
+			<div class="col-md-8">
+				<form id="formulario">
+					<div class="p-4">
+						<table class="mx-auto">
+							<thead>
+								<tr>
+									<td>Codigo producto</td>
+									<td>Cantidad</td>
+									<td>Valor total</td>
+								</tr>
+							</thead>
+							<tbody id="cuerpotabla">
+								<tr>
+									<td><select id="lista1"
+										class="listado form-select form-select-sm">
+											<option>Seleccione producto</option>
+									</select></td>
 
-						<td><input type="number" class="form-control form-control-sm"
-							max="2"></td>
+									<td><input id="option1" type="number"
+										class="  form-control form-control-sm"></td>
 
-						<td><input type="number" class="form-control form-control-sm" disabled></td>
-					</tr>
-					<tr>
-						<td><select id="listado"
-							class="listado form-select form-select-sm">
-								<option>Seleccione producto</option>
-						</select></td>
+									<td><input id="valor1" type="number"
+										class="form-control form-control-sm" disabled></td>
 
-						<td><input type="number" class="form-control form-control-sm"
-							max="2"></td>
+								</tr>
+								<tr>
+									<td><select id="lista2"
+										class="listado form-select form-select-sm">
+											<option>Seleccione producto</option>
+									</select></td>
 
-						<td><input type="number" class="form-control form-control-sm" disabled></td>
-					</tr>
-					<tr>
-						<td><select id="listado"
-							class="listado form-select form-select-sm">
-								<option value="0">Seleccione producto</option>
-						</select></td>
+									<td><input id="option2" type="number"
+										class=" form-control form-control-sm"></td>
 
-						<td><input type="number" class="form-control form-control-sm"
-							max="2"></td>
+									<td><input id="valor2" type="number"
+										class="form-control form-control-sm" disabled></td>
+								</tr>
+								<tr>
+									<td><select id="lista3"
+										class="listado form-select form-select-sm">
+											<option>Seleccione producto</option>
+									</select></td>
 
-						<td><input type="number" class="form-control form-control-sm"disabled></td>
-					</tr>
-					
-				</tbody>
-			</table>
-		
-						<button>Agregar otro producto</button>
-				
+									<td><input id="option3" type="number"
+										class=" form-control form-control-sm"></td>
+
+									<td><input id="valor3" type="number"
+										class="form-control form-control-sm" disabled></td>
+								</tr>
+								<tr rowspan="2">
+									<td><button type="submit" id="agregar" class="btn btn-primary btn-block">Confirmar</button></td>
+								</tr>
+							</tbody>
+
+							
+
+						</table>
+					</div>
+				</form>
+			</div>
+
+			<div class="col-md-4">
+				<div class="p-5 mt-5">
+					<input id="valorVenta" type="number"
+						class="form-control form-control-sm" disabled> 
+					<input
+						id="totalIva" type="number" class="form-control form-control-sm"
+						disabled> 
+					<input id="TotalFinal" type="number"
+						class="form-control form-control-sm" disabled>
+				</div>
+
+			</div>
 		</div>
-	
-		<script src="https://code.jquery.com/jquery-3.3.1.min.js"
-			integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-			crossorigin="anonymous"></script>
+	</div>
 
-		<script
-			src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"
-			integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/"
-			crossorigin="anonymous"></script>
-		<script src="scripts/ventas.js"></script>
+
+
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+		crossorigin="anonymous"></script>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"
+		integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/"
+		crossorigin="anonymous"></script>
+	<script src="scripts/ventas.js"></script>
 </body>
 </html>

@@ -57,7 +57,7 @@ public class ProductoDAO {
 				producto.setNombreProducto(result.getString("nombre_producto"));
 				producto.setNitProveedor(result.getInt("nitproveedor"));
 				producto.setPrecioCompra(result.getDouble("precio_compra"));
-				producto.setIvaCompra(result.getDouble("ivaventa"));
+				producto.setIvaCompra(result.getDouble("ivacompra"));
 				producto.setPrecioVenta(result.getDouble("precio_venta"));
 
 				productos.add(producto);

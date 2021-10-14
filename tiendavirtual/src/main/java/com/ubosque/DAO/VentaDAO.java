@@ -90,9 +90,9 @@ public class VentaDAO {
 			statement.setDouble(5, venta.getTotalVenta());
 			statement.setDouble(6, venta.getValorVenta());
 
-			resultSet = statement.executeQuery();
+			int resultado = statement.executeUpdate();
 
-			if (resultSet != null) {
+			if (resultado != 0) {
 				System.out.println("Venta agregada");
 			} else {
 				System.out.println("Venta No agregada");

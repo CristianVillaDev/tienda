@@ -1,7 +1,6 @@
 $(document).ready(function(){
 	console.log("JQuery funcionando");
 	
-	
 	$("#formulario").submit(e => {
 		e.preventDefault();
 	 	
@@ -19,7 +18,9 @@ $(document).ready(function(){
 					alert("Ingreso sistema usuario con cedula ->"+response);
 				}
 				let cedula_usuario = response;
-				window.location="principal.jsp?cedula_usuario="+cedula_usuario;
+				localStorage.setItem('usuario', cedula_usuario);
+				window.location="principal.jsp";
+				
 			}
 			
 		});
