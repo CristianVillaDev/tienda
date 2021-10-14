@@ -79,7 +79,7 @@
 						<h6 class="mt-3">Consecutivo</h6>
 					</div>
 					<div class="col">
-						<input disabled type="text" id="codigo_consecutivo"
+						<input disabled type="text" id="codigo_consecutivo" required
 							class="form-control">
 					</div>
 				</div>
@@ -102,12 +102,12 @@
 							</thead>
 							<tbody id="cuerpotabla">
 								<tr>
-									<td><select id="lista1"
+									<td><select id="lista1" required
 										class="listado form-select form-select-sm">
 											<option>Seleccione producto</option>
 									</select></td>
 
-									<td><input id="option1" type="number"
+									<td><input id="option1" type="number" required
 										class="  form-control form-control-sm"></td>
 
 									<td><input id="valor1" type="number"
@@ -115,24 +115,24 @@
 
 								</tr>
 								<tr>
-									<td><select id="lista2"
+									<td><select id="lista2" required
 										class="listado form-select form-select-sm">
 											<option>Seleccione producto</option>
 									</select></td>
 
-									<td><input id="option2" type="number"
+									<td><input id="option2" type="number" required
 										class=" form-control form-control-sm"></td>
 
 									<td><input id="valor2" type="number"
 										class="form-control form-control-sm" disabled></td>
 								</tr>
 								<tr>
-									<td><select id="lista3"
+									<td><select id="lista3" required
 										class="listado form-select form-select-sm">
 											<option>Seleccione producto</option>
 									</select></td>
 
-									<td><input id="option3" type="number"
+									<td><input id="option3" type="number" required
 										class=" form-control form-control-sm"></td>
 
 									<td><input id="valor3" type="number"

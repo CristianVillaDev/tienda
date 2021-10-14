@@ -71,9 +71,7 @@ $(document).ready(function(){
 				actualizarValores();
 	         }
 	      });
-			
 	});
-	
 	
 	$("#option2").on("keyup",(response)=>{
 		let producto_id = $("#lista2 option:selected").val();
@@ -96,7 +94,6 @@ $(document).ready(function(){
 	      });
 	});
 
-
 	$("#option3").on("keyup",(response)=>{
 		let producto_id = $("#lista3 option:selected").val();
 		$.ajax({
@@ -116,12 +113,16 @@ $(document).ready(function(){
 	      });
 	});
 	
-	
-
 	$("#formulario").submit(e=>{
 		e.preventDefault();
 		var cedula = localStorage.getItem("usuario");
 		console.log(cedula);
+		
+		if($("#cedula").val() == 0){
+			alert("Campo de cedula vacio!");
+			return;
+		}
+		
 		
 		$.ajax({
 	            type: "POST",
@@ -132,9 +133,10 @@ $(document).ready(function(){
 					  ivaVenta: totalIva,
 					  totalVenta: total,
 					  valorVenta: totalVenta}),
-	            contentType: "application/json",
+	           		  contentType: "application/json",
 	            success: function (data) {
-					console.log(data);
+					alert("Venta agregada");
+					
 	       		}
 	    });
 	});
@@ -147,7 +149,6 @@ $(document).ready(function(){
 	            url: "http://localhost:8080/clientes/listar/"+cedula,
 	            contentType: "application/json",
 	            success: function (data) {
-					console.log(data[0]);
 					$("#cedula_cliente").val(data[0].nombreCliente);
 	       		}
 	    });
