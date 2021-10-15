@@ -17,12 +17,14 @@ $(document).ready(function(){
 				}else if(response != 0){
 					alert("Ingreso sistema usuario con cedula ->"+response);
 				}
-				let cedula_usuario = response;
-				localStorage.setItem('usuario', cedula_usuario);
-				window.location="principal.jsp";
-				
+				if(response != 0){
+					let cedula_usuario = response;
+					localStorage.setItem('usuario', cedula_usuario);
+					window.location="principal.jsp";
+				}else{
+					alert("Usuario o contrseña incorrectos!");
+				}
 			}
-			
 		});
 	});
 	

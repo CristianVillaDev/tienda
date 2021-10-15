@@ -14,8 +14,6 @@
 	<div class="contenedor">
 		<div class="formulario sombra-dark">
 			<h1>Iniciar Sesión</h1>
-
-
 			<form id="formulario">
 				<div class="campos">
 					<label htmlFor="usuario">Usuario</label> <input type="text" id="usuario"
@@ -30,9 +28,7 @@
 				<div class="campos bg-info d-grid gap-2">
 					<input type="submit" class="btn btn-primary" value="Iniciar Sesión" />
 				</div>
-
 			</form>
-
 		</div>
 	</div>
 	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>

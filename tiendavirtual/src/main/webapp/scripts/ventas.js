@@ -54,11 +54,15 @@ $(document).ready(function(){
 		total = calculoiva3 + calculoiva2 + calculoiva1;
 	}
 	
+let	producto_id1 =0;
+let producto_id2=0;
+let producto_id3=0; 
+	
 	$("#option1").on("keyup",(response)=>{
-		let producto_id = $("#lista1 option:selected").val();
+		producto_id1 = $("#lista1 option:selected").val();
 		$.ajax({
 	        type: "GET",
-	        url: "http://localhost:8080/productos/listar/"+producto_id,  
+	        url: "http://localhost:8080/productos/listar/"+producto_id1,  
 	        success: function(data) {
 				const productos = data;
 				
@@ -74,10 +78,10 @@ $(document).ready(function(){
 	});
 	
 	$("#option2").on("keyup",(response)=>{
-		let producto_id = $("#lista2 option:selected").val();
+		producto_id2 = $("#lista2 option:selected").val();
 		$.ajax({
 	        type: "GET",
-	        url: "http://localhost:8080/productos/listar/"+producto_id,  
+	        url: "http://localhost:8080/productos/listar/"+producto_id2,  
 	        success: function(data) {
 				const productos = data;
 			
@@ -95,10 +99,10 @@ $(document).ready(function(){
 	});
 
 	$("#option3").on("keyup",(response)=>{
-		let producto_id = $("#lista3 option:selected").val();
+		producto_id3 = $("#lista3 option:selected").val();
 		$.ajax({
 	        type: "GET",
-	        url: "http://localhost:8080/productos/listar/"+producto_id,  
+	        url: "http://localhost:8080/productos/listar/"+producto_id3,  
 	        success: function(data) {
 				const productos = data;
 		
@@ -113,6 +117,8 @@ $(document).ready(function(){
 	      });
 	});
 	
+let id_venta = 0;
+
 	$("#formulario").submit(e=>{
 		e.preventDefault();
 		var cedula = localStorage.getItem("usuario");
@@ -122,7 +128,6 @@ $(document).ready(function(){
 			alert("Campo de cedula vacio!");
 			return;
 		}
-		
 		
 		$.ajax({
 	            type: "POST",
@@ -135,12 +140,93 @@ $(document).ready(function(){
 					  valorVenta: totalVenta}),
 	           		  contentType: "application/json",
 	            success: function (data) {
-					alert("Venta agregada");
+					console.log("Venta agregada");
+	       		}
+	    });	
+
+		setTimeout(function(){ obtenerIdventa(); }, 5000);
+		setTimeout(function(){ detalle(); }, 15000);
+		setTimeout(function(){ detalle2(); }, 20000);
+		setTimeout(function(){ detalle3(); }, 25000);
+		
+	});
+	
+	function obtenerIdventa(){
+		$.ajax({
+	        type: "GET",
+	        url: "http://localhost:8080/ventas/codigo",  
+	        success: function(data) {
+				id_venta = data;
+				console.log("id venta agregada "+id_venta); 
+	         }
+	      });
+	}
+	
+	function detalle(){
+
+		console.log("datos");
+		console.log($("#option1").val());
+		console.log(producto_id1);
+		console.log(id_venta);
+		console.log(calculoiva1);
+		console.log(calculo1);
+		console.log(iva1);
+		
+		$.ajax({
+	            type: "POST",
+	            url: "http://localhost:8080/detalleventas/guardar",
+	            data: JSON.stringify({
+						  cantidadProducto: $("#option1").val(),
+						  codigoProducto: producto_id1 , 
+						  codigoVenta: id_venta,
+						  valorTotal: calculoiva1,
+						  valorVenta :calculo1,
+					  	  valorIva: iva1
+						}),
+	           	contentType: "application/json",
+	            success: function (data) {
+					console.log("Venta proucto 1 agregada");
+	       		}
+	    });
+	}
+	
+	function detalle2(){
+		$.ajax({
+	            type: "POST",
+	            url: "http://localhost:8080/detalleventas/guardar",
+	            data: JSON.stringify({
+						  cantidadProducto: $("#option2").val(),
+						  codigoProducto: producto_id2 , 
+						  codigoVenta: id_venta,
+						  valorTotal: calculoiva2,
+						  valorVenta :calculo2,
+					  	   valorIva: iva2
+						}),
+	           		  contentType: "application/json",
+	            success: function (data) {
+					alert("Venta producto 2 agregada");
+	       		}
+	    });
+	}
+	function detalle3(){
+		$.ajax({
+	            type: "POST",
+	            url: "http://localhost:8080/detalleventas/guardar",
+	            data: JSON.stringify({
+						  cantidadProducto: $("#option3").val(),
+						  codigoProducto: producto_id3 , 
+						  codigoVenta: id_venta,
+						  valorTotal: calculoiva3,
+						  valorVenta :calculo3,
+					  	   valorIva: iva3
+						}),
+	           		  contentType: "application/json",
+	            success: function (data) {
+					alert("Venta producto 3 agregada");
 					
 	       		}
 	    });
-	});
-	
+	}
 	$("#formulario_cedula").submit(e=>{
 		e.preventDefault();
 		cedula = $("#cedula").val();
@@ -149,6 +235,13 @@ $(document).ready(function(){
 	            url: "http://localhost:8080/clientes/listar/"+cedula,
 	            contentType: "application/json",
 	            success: function (data) {
+				console.log(data);
+				
+					if(Object.keys(data).length===0){
+						coneole("Cliente no encontrado");
+						return;
+					}
+					
 					$("#cedula_cliente").val(data[0].nombreCliente);
 	       		}
 	    });

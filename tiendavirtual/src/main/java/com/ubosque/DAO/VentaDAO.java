@@ -67,6 +67,28 @@ public class VentaDAO {
 		}
 		return ventas;
 	}
+	
+	public int listarVentaID() {
+		int codigo = 0;
+		Connection connection = new Connection();
+		try {
+			String query = "select max(codigo_venta) as codigo from ventas";
+			PreparedStatement statement = connection.getConnection().prepareStatement(query);
+			ResultSet resultSet = statement.executeQuery();
+
+			if (resultSet.next()) {
+				codigo = resultSet.getInt("codigo");
+			}
+			
+			statement.close();
+			resultSet.close();
+			connection.connection.close();
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return codigo;
+	}
 
 	public void addVenta(Ventas venta) {
 		Connection connection = new Connection();

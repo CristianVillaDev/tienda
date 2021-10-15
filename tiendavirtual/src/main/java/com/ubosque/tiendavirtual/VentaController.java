@@ -44,6 +44,12 @@ public class VentaController {
 		return ventaDAO.listarVentas();
 	}
 	
+	@RequestMapping("codigo")
+	public int obtenerId(){
+		VentaDAO ventaDAO = new VentaDAO();
+		return ventaDAO.listarVentaID();
+	}
+	
 	@RequestMapping("listar/{codigo_venta}")
 	public ArrayList<Ventas> showVentas(@PathVariable("codigo_venta") int codigo_venta){
 		VentaDAO ventaDAO = new VentaDAO();
