@@ -6,6 +6,9 @@ $(document).ready(function(){
 
 	listado();
 	
+
+	 
+
 	function listado(){	
 	   $.ajax({
 	        type: "GET",
@@ -121,6 +124,9 @@ let id_venta = 0;
 
 	$("#formulario").submit(e=>{
 		e.preventDefault();
+		
+		$("#mensaje").html("Cargando ... ");
+		
 		var cedula = localStorage.getItem("usuario");
 		console.log(cedula);
 		
@@ -129,6 +135,8 @@ let id_venta = 0;
 			return;
 		}
 		
+		$("#mensaje").html("Validando ... ");
+		$("#mensaje").html("Ejecutando peticion AJAX ventas... ");
 		$.ajax({
 	            type: "POST",
 	            url: "http://localhost:8080/ventas/guardar",
@@ -141,13 +149,25 @@ let id_venta = 0;
 	           		  contentType: "application/json",
 	            success: function (data) {
 					console.log("Venta agregada");
+	
 	       		}
 	    });	
 
+		$("#mensaje").html("Cargando ... ");
+		$("#mensaje").html("Ejecutando peticion AJAX ... ");
 		setTimeout(function(){ obtenerIdventa(); }, 5000);
+		$("#mensaje").html("Cargando ... ");
+		$("#mensaje").html("Ejecutando peticion AJAX ... ");
 		setTimeout(function(){ detalle(); }, 15000);
+		$("#mensaje").html("Cargando ... ");
+		$("#mensaje").html("Ejecutando peticion AJAX ... ");
 		setTimeout(function(){ detalle2(); }, 20000);
+		$("#mensaje").html("Cargando ... ");
+		$("#mensaje").html("Ejecutando peticion AJAX ... ");
 		setTimeout(function(){ detalle3(); }, 25000);
+		
+		$("#mensaje").html("Cargando ... ");
+		
 		
 	});
 	
@@ -158,20 +178,12 @@ let id_venta = 0;
 	        success: function(data) {
 				id_venta = data;
 				console.log("id venta agregada "+id_venta); 
+				$("#codigo_consecutivo").val(id_venta);
 	         }
 	      });
 	}
 	
 	function detalle(){
-
-		console.log("datos");
-		console.log($("#option1").val());
-		console.log(producto_id1);
-		console.log(id_venta);
-		console.log(calculoiva1);
-		console.log(calculo1);
-		console.log(iva1);
-		
 		$.ajax({
 	            type: "POST",
 	            url: "http://localhost:8080/detalleventas/guardar",
@@ -185,7 +197,7 @@ let id_venta = 0;
 						}),
 	           	contentType: "application/json",
 	            success: function (data) {
-					console.log("Venta proucto 1 agregada");
+					$("#mensaje").html("Completado detalles 1... ");
 	       		}
 	    });
 	}
@@ -204,10 +216,11 @@ let id_venta = 0;
 						}),
 	           		  contentType: "application/json",
 	            success: function (data) {
-					alert("Venta producto 2 agregada");
+					$("#mensaje").html("Completado detalles 2... ");
 	       		}
 	    });
 	}
+	
 	function detalle3(){
 		$.ajax({
 	            type: "POST",
@@ -218,15 +231,20 @@ let id_venta = 0;
 						  codigoVenta: id_venta,
 						  valorTotal: calculoiva3,
 						  valorVenta :calculo3,
-					  	   valorIva: iva3
+					  	  valorIva: iva3
 						}),
 	           		  contentType: "application/json",
 	            success: function (data) {
-					alert("Venta producto 3 agregada");
+					$("#mensaje").html("Completado detalles 3... ");
+		
+					$("#mensaje").html("Completado detalles... ");
 					
+					$("#mensaje").html("Completado con exito proceso ventas. ");
+		
 	       		}
 	    });
 	}
+	
 	$("#formulario_cedula").submit(e=>{
 		e.preventDefault();
 		cedula = $("#cedula").val();
@@ -235,13 +253,10 @@ let id_venta = 0;
 	            url: "http://localhost:8080/clientes/listar/"+cedula,
 	            contentType: "application/json",
 	            success: function (data) {
-				console.log(data);
-				
 					if(Object.keys(data).length===0){
-						coneole("Cliente no encontrado");
+						alert("Cliente no encontrado");
 						return;
 					}
-					
 					$("#cedula_cliente").val(data[0].nombreCliente);
 	       		}
 	    });

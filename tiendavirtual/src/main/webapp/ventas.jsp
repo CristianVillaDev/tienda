@@ -79,7 +79,7 @@
 						<h6 class="mt-3">Consecutivo</h6>
 					</div>
 					<div class="col">
-						<input disabled type="text" id="codigo_consecutivo" required
+						<input disabled type="text" id="codigo_consecutivo" 
 							class="form-control">
 					</div>
 				</div>
@@ -142,30 +142,33 @@
 									<td><button type="submit" id="agregar" class="btn btn-primary btn-block">Confirmar</button></td>
 								</tr>
 							</tbody>
-
-							
-
 						</table>
 					</div>
 				</form>
 			</div>
-
-			<div class="col-md-4">
-				<div class="p-5 mt-5">
-					<input id="valorVenta" type="number"
+			
+			<div class="col-md-4 ">
+				<div class="p-4 ">
+					Total venta<input id="valorVenta" type="number"
 						class="form-control form-control-sm" disabled> 
-					<input
+					Valor IVA<input
 						id="totalIva" type="number" class="form-control form-control-sm"
 						disabled> 
-					<input id="TotalFinal" type="number"
+					Total con IVA<input id="TotalFinal" type="number"
 						class="form-control form-control-sm" disabled>
 				</div>
 
 			</div>
+			
 		</div>
+		
+		
+			<div class="container">
+				<h3 class="mx-auto" id="mensaje"></h3>
+
+			</div>
+			
 	</div>
-
-
 
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
 		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="

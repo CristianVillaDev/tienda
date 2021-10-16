@@ -18,6 +18,7 @@ $(document).ready(function(){
               	processData: false, //importante enviar este parametro en false
 	            complete: function (data) {
 					console.log(data);
+					$("#mensaje").html("Productos cargados.");
 	       		}
 	    });
 	});
