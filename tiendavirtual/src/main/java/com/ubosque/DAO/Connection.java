@@ -11,7 +11,6 @@ public class Connection {
 
 	//String url= "jdbc:mysql://localhost/"+database;
 	
-
 	String database="tiendagrupo60"; 
 	String user="root";
 	String password= "admin123"; 
@@ -19,12 +18,12 @@ public class Connection {
 	String port= "3306";
 	String url= "jdbc:mysql://" + hostname + ":" + port + "/" + database + "?user=" + user + "&password=" + password;
  
-	
 	java.sql.Connection connection = null;
 	
 	public java.sql.Connection getConnection() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
+			System.out.print(url);
 			//connection=DriverManager.getConnection(url,user,password);
 			connection=DriverManager.getConnection(url);
 			if(connection!=null) {

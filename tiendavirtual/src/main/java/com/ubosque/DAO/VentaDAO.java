@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import com.ubosque.DTO.Reportes;
 import com.ubosque.DTO.Ventas;
 
-
 public class VentaDAO {
 
 	public ArrayList<Ventas> listarVentas() {

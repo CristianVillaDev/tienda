@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ubosque.DAO.Connection;
 import com.ubosque.DAO.VentaDAO;
 import com.ubosque.DTO.Reportes;
 import com.ubosque.DTO.Ventas;
@@ -48,6 +49,20 @@ public class VentaController {
 	@RequestMapping("prueba")
 	public String prueba(){
 		return "Server is up!";
+	}
+	
+	@RequestMapping("prueba3")
+	public String prueba3(){
+		Connection connection = new Connection();
+		connection.getConnection();
+		return "correcto";
+	}
+	
+	@RequestMapping("prueba2")
+	public String prueba2(){
+		Connection connection = new Connection();
+		String hola= connection.getConnection().toString();
+		return hola;
 	}
 	
 	@RequestMapping("reporte/{cedula_usuario}")

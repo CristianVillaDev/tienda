@@ -3,12 +3,14 @@ $(document).ready(function(){
 	
 	$("#formulario").submit(e => {
 		e.preventDefault();
-	 	
+	 	var getUrl = window.location;
+		var baseUrl = getUrl.protocol + "//"+getUrl.host+"/"+getUrl.pathname.split('/')[1];
+		console.log(baseUrl);
 		$.ajax({
 			type:"POST",
 			async: false,
 			data: JSON.stringify({usuario:$("#usuario").val(), password:$("#password").val()}),
-			url:"http://localhost:8080/usuarios/auth",
+			url: baseUrl+"/usuarios/auth",
 			contentType: "application/json",
 			success: function(response){
 				console.log(response);
@@ -27,5 +29,4 @@ $(document).ready(function(){
 			}
 		});
 	});
-	
 });
