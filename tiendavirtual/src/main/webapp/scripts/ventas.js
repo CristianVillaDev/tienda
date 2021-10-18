@@ -6,8 +6,6 @@ $(document).ready(function(){
 
 	listado();
 	
-
-	
 	function listado(){	
 	   $.ajax({
 	        type: "GET",

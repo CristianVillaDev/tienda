@@ -5,6 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Tienda Generica</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
 
@@ -20,7 +21,7 @@
 
 			<div class="collapse navbar-collapse" id="navbarColor03">
 				<ul class="navbar-nav me-auto">
-					<li class="nav-item"><a class="nav-link active" href="#">Usuarios
+					<li class="nav-item"><a class="nav-link active" href="usuarios.jsp">Usuarios
 							<span class="visually-hidden">(current)</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link" href="clientes.jsp">Clientes</a>
@@ -35,9 +36,29 @@
 		</div>
 	</nav>
 
+	<div class="container-fluid">
+		<div class="mx-auto">
+				<a href="listadoUsuarios.jsp" class="btn btn-primary">Listado de usuarios</a>
+				<a href="listadoClientes.jsp" class="btn btn-primary">Listado de clientes</a>
+				<a href="ventasPorCliente.jsp" class="btn btn-primary">Ventas por cliente</a>
+		</div>
+	</div>
+	
+	<div class="container-fluid">
+		<div class="mx-auto">
+				<form id="formulario">
+					<input type="number" id="cedula" placeholder="Ingrese el numero de cedula del cliente  a consultar" requiered>
+					<button type="submit" id="enviar">Consultar</button>
+				</form>
+		</div>
+	</div>
+	
+	
+
 	<div class="container-fluid row pl-0">
 		<div class="col-md-9  p-2">
 			<div class="table-responsive ">
+			
 				<table
 					class="table table-dark table-hover table-sm table-bordered  ">
 					<thead>
@@ -51,7 +72,12 @@
 
 					</tbody>
 				</table>
-
+				
+			<div class="container-fluid">
+				<div class="mx-auto">
+						Total venta $ <h4 id="venta"></h4>
+				</div>
+			</div>
 
 			</div>
 		</div>
@@ -64,6 +90,6 @@
 		integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/"
 		crossorigin="anonymous"></script>
 		
-	<script src="scripts/reportes.js"></script>
+	<script src="scripts/reportesVentas.js"></script>
 </body>
 </html>

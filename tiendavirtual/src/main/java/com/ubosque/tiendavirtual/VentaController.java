@@ -45,6 +45,11 @@ public class VentaController {
 		return ventaDAO.listarVentas();
 	}
 	
+	@RequestMapping("prueba")
+	public String prueba(){
+		return "Server is up!";
+	}
+	
 	@RequestMapping("reporte/{cedula_usuario}")
 	public ArrayList<Reportes> showReporte(@PathVariable("cedula_usuario") int cedula_usuario){
 		VentaDAO ventaDAO = new VentaDAO();
