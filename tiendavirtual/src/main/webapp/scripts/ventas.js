@@ -7,9 +7,11 @@ $(document).ready(function(){
 	listado();
 	
 	function listado(){	
+		var getUrl = window.location;
+		var baseUrl = getUrl.protocol + "//"+getUrl.host+"/"+getUrl.pathname.split('/')[1];
 	   $.ajax({
 	        type: "GET",
-	        url: "http://localhost:8080/productos/listar",  
+	        url: baseUrl+"/productos/listar",  
 	        success: function(data) {
 				const productos = data;
 				let template='';
@@ -59,10 +61,13 @@ let producto_id2=0;
 let producto_id3=0; 
 	
 	$("#option1").on("keyup",(response)=>{
+		
+		var getUrl = window.location;
+		var baseUrl = getUrl.protocol + "//"+getUrl.host+"/"+getUrl.pathname.split('/')[1];
 		producto_id1 = $("#lista1 option:selected").val();
 		$.ajax({
 	        type: "GET",
-	        url: "http://localhost:8080/productos/listar/"+producto_id1,  
+	        url: baseUrl+"/productos/listar/"+producto_id1,  
 	        success: function(data) {
 				const productos = data;
 				
@@ -79,9 +84,11 @@ let producto_id3=0;
 	
 	$("#option2").on("keyup",(response)=>{
 		producto_id2 = $("#lista2 option:selected").val();
+		var getUrl = window.location;
+		var baseUrl = getUrl.protocol + "//"+getUrl.host+"/"+getUrl.pathname.split('/')[1];
 		$.ajax({
 	        type: "GET",
-	        url: "http://localhost:8080/productos/listar/"+producto_id2,  
+	        url: baseUrl+"/productos/listar/"+producto_id2,  
 	        success: function(data) {
 				const productos = data;
 			
@@ -100,9 +107,11 @@ let producto_id3=0;
 
 	$("#option3").on("keyup",(response)=>{
 		producto_id3 = $("#lista3 option:selected").val();
+		var getUrl = window.location;
+		var baseUrl = getUrl.protocol + "//"+getUrl.host+"/"+getUrl.pathname.split('/')[1];
 		$.ajax({
 	        type: "GET",
-	        url: "http://localhost:8080/productos/listar/"+producto_id3,  
+	        url: baseUrl+"/productos/listar/"+producto_id3,  
 	        success: function(data) {
 				const productos = data;
 		
@@ -134,9 +143,13 @@ let id_venta = 0;
 		
 		$("#mensaje").html("Validando ... ");
 		$("#mensaje").html("Ejecutando peticion AJAX ventas... ");
+		
+		var getUrl = window.location;
+		var baseUrl = getUrl.protocol + "//"+getUrl.host+"/"+getUrl.pathname.split('/')[1];
+		
 		$.ajax({
 	            type: "POST",
-	            url: "http://localhost:8080/ventas/guardar",
+	            url: baseUrl+"/ventas/guardar",
 	            data: JSON.stringify({
 					  cedulaCliente:$("#cedula").val(),
 					  cedulaUsuario:cedula,
@@ -169,9 +182,11 @@ let id_venta = 0;
 	});
 	
 	function obtenerIdventa(){
+		var getUrl = window.location;
+		var baseUrl = getUrl.protocol + "//"+getUrl.host+"/"+getUrl.pathname.split('/')[1];
 		$.ajax({
 	        type: "GET",
-	        url: "http://localhost:8080/ventas/codigo",  
+	        url: baseUrl +"/ventas/codigo",  
 	        success: function(data) {
 				id_venta = data;
 				console.log("id venta agregada "+id_venta); 
@@ -181,9 +196,13 @@ let id_venta = 0;
 	}
 	
 	function detalle(){
+		
+		var getUrl = window.location;
+		var baseUrl = getUrl.protocol + "//"+getUrl.host+"/"+getUrl.pathname.split('/')[1];
+		
 		$.ajax({
 	            type: "POST",
-	            url: "http://localhost:8080/detalleventas/guardar",
+	            url: baseUrl+"/detalleventas/guardar",
 	            data: JSON.stringify({
 						  cantidadProducto: $("#option1").val(),
 						  codigoProducto: producto_id1 , 
@@ -200,9 +219,11 @@ let id_venta = 0;
 	}
 	
 	function detalle2(){
+		var getUrl = window.location;
+		var baseUrl = getUrl.protocol + "//"+getUrl.host+"/"+getUrl.pathname.split('/')[1];
 		$.ajax({
 	            type: "POST",
-	            url: "http://localhost:8080/detalleventas/guardar",
+	            url: baseUrl+"/detalleventas/guardar",
 	            data: JSON.stringify({
 						  cantidadProducto: $("#option2").val(),
 						  codigoProducto: producto_id2 , 
@@ -219,9 +240,11 @@ let id_venta = 0;
 	}
 	
 	function detalle3(){
+		var getUrl = window.location;
+		var baseUrl = getUrl.protocol + "//"+getUrl.host+"/"+getUrl.pathname.split('/')[1];
 		$.ajax({
 	            type: "POST",
-	            url: "http://localhost:8080/detalleventas/guardar",
+	            url: baseUrl+"/detalleventas/guardar",
 	            data: JSON.stringify({
 						  cantidadProducto: $("#option3").val(),
 						  codigoProducto: producto_id3 , 
@@ -245,9 +268,11 @@ let id_venta = 0;
 	$("#formulario_cedula").submit(e=>{
 		e.preventDefault();
 		cedula = $("#cedula").val();
+		var getUrl = window.location;
+		var baseUrl = getUrl.protocol + "//"+getUrl.host+"/"+getUrl.pathname.split('/')[1];
 		$.ajax({
 	            type: "GET",
-	            url: "http://localhost:8080/clientes/listar/"+cedula,
+	            url: baseUrl+"/clientes/listar/"+cedula,
 	            contentType: "application/json",
 	            success: function (data) {
 					if(Object.keys(data).length===0){

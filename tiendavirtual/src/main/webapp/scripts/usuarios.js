@@ -18,16 +18,21 @@ $(document).ready(function(){
 		};
 		
 		const cedula =  $("#cedula").val();
+		
+		var getUrl = window.location;
+		var baseUrl = getUrl.protocol + "//"+getUrl.host+"/"+getUrl.pathname.split('/')[1];
 
 		let url = '';
 		let type= '';
+		let mensaje ='';
+		
 		if(flag){
-			url = "http://localhost:8080/usuarios/actualizar/"+cedula;
+			url = baseUrl+"/usuarios/actualizar/"+cedula;
 			type= "PUT";
 			mensaje="Datos del Usuario Actualizados";
 			
 		}else{
-			url = "http://localhost:8080/usuarios/guardar";
+			url = baseurl+"/usuarios/guardar";
 			type= "POST";
 			mensaje="Usuario Creado";
 		}
@@ -65,9 +70,11 @@ $(document).ready(function(){
 	}
 	
 	function listado(){
+		var getUrl = window.location;
+		var baseUrl = getUrl.protocol + "//"+getUrl.host+"/"+getUrl.pathname.split('/')[1];
 	   $.ajax({
 	        type: "GET",
-	        url: "http://localhost:8080/usuarios/listar",  
+	        url: baseUrl+"/usuarios/listar",  
 	        success: function(data) {
 				const usuarios = data;
 				let template='';
@@ -92,10 +99,11 @@ $(document).ready(function(){
 	$(document).on('click','.borrar',(response)=> {
 		const nit_p = $(this)[0].activeElement;
 		const nitproveedor = $(nit_p).attr('id');
-		
+		var getUrl = window.location;
+		var baseUrl = getUrl.protocol + "//"+getUrl.host+"/"+getUrl.pathname.split('/')[1];
  		$.ajax({
 			type:"DELETE",
-			url:"http://localhost:8080/usuarios/eliminar/"+cedula,
+			url:baseUrl+"/usuarios/eliminar/"+cedula,
 			success: function(response){
 				listado();
 				alert("Datos del Usuario Borrados");
@@ -111,10 +119,13 @@ $(document).ready(function(){
 			btnCancelar.css("display","block");
 			
 			$("#cedula").attr('disabled',true);
+			
+			var getUrl = window.location;
+		var baseUrl = getUrl.protocol + "//"+getUrl.host+"/"+getUrl.pathname.split('/')[1];
 	 	
 		 $.ajax({
 			type:"GET",
-			url:"http://localhost:8080/usuarios/listar/"+cedula_usuario,
+			url: baseUrl+"/usuarios/listar/"+cedula_usuario,
 			success: function(response){
 				console.log(response);
 				const usuario = response[0];
@@ -144,10 +155,11 @@ $(document).ready(function(){
 	$(document).on('click','.ver',(response)=> {
 			const cedula = $(this)[0].activeElement;
 			const cedula_usuario = $(cedula).attr('id');
-			 	
+			 	var getUrl = window.location;
+		var baseUrl = getUrl.protocol + "//"+getUrl.host+"/"+getUrl.pathname.split('/')[1];
 		 $.ajax({
 			type:"GET",
-			url:"http://localhost:8080/usuarios/listar/"+cedula_usuario,
+			url: baseUrl+"/usuarios/listar/"+cedula_usuario,
 			success: function(response){
 				const usuario = response[0];
 

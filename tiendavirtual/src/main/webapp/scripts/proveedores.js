@@ -7,6 +7,9 @@ $(document).ready(function(){
 	var btnCancelar = $("#cancelarOP");
 	btnCancelar.css("display","none");
 		
+	var getUrl = window.location;
+		var baseUrl = getUrl.protocol + "//"+getUrl.host+"/"+getUrl.pathname.split('/')[1];	
+		
 	$("#formulario").submit(e =>{
 		e.preventDefault();
 		
@@ -22,12 +25,13 @@ $(document).ready(function(){
 
 		let url = '';
 		let type= '';
+		let mensaje ='';
 		if(flag){
-			url = "http://localhost:8080/proveedores/actualizar/"+nit;
+			url = baseUrl+"/proveedores/actualizar/"+nit;
 			type= "PUT";
 			mensaje="Datos del proveedor Actualizados";
 		}else{
-			url = "http://localhost:8080/proveedores/guardar";
+			url = baseUrl+"/proveedores/guardar";
 			type= "POST";
 			mensaje="Datos del proveedor Creado";
 		}
@@ -70,9 +74,13 @@ $(document).ready(function(){
 	
 	
 	function listado(){
+		
+		var getUrl = window.location;
+		var baseUrl = getUrl.protocol + "//"+getUrl.host+"/"+getUrl.pathname.split('/')[1];
+		
 	   $.ajax({
 	        type: "GET",
-	        url: "http://localhost:8080/proveedores/listar",  
+	        url: baseUrl+"/proveedores/listar",  
 	        success: function(data) {
 				const proveedores = data;
 				let template='';
@@ -99,9 +107,12 @@ $(document).ready(function(){
 		const nit_p = $(this)[0].activeElement;
 		const nitproveedor = $(nit_p).attr('id');
 		
+		var getUrl = window.location;
+		var baseUrl = getUrl.protocol + "//"+getUrl.host+"/"+getUrl.pathname.split('/')[1];
+		
  		$.ajax({
 			type:"DELETE",
-			url:"http://localhost:8080/proveedores/eliminar/"+nitproveedor,
+			url: baseUrl+"/proveedores/eliminar/"+nitproveedor,
 			success: function(response){
 				listado();
 				alert("Datos del proveedor Borrados");
@@ -117,10 +128,13 @@ $(document).ready(function(){
 			btnCancelar.css("display","block");
 			
 			$("#nit").attr('disabled',true);
+			
+			var getUrl = window.location;
+		var baseUrl = getUrl.protocol + "//"+getUrl.host+"/"+getUrl.pathname.split('/')[1];
 	 	
 		 $.ajax({
 			type:"GET",
-			url:"http://localhost:8080/proveedores/listar/"+nitproveedor,
+			url: baseUrl+"/proveedores/listar/"+nitproveedor,
 			success: function(response){
 				
 				const proveedor = response[0];
@@ -152,10 +166,11 @@ $(document).ready(function(){
 	$(document).on('click','.ver',(response)=> {
 			const nit_p = $(this)[0].activeElement;
 			const nitproveedor = $(nit_p).attr('id');
-			 	
+			 	var getUrl = window.location;
+		var baseUrl = getUrl.protocol + "//"+getUrl.host+"/"+getUrl.pathname.split('/')[1];
 		 $.ajax({
 			type:"GET",
-			url:"http://localhost:8080/proveedores/listar/"+nitproveedor,
+			url:baseUrl+"/proveedores/listar/"+nitproveedor,
 			success: function(response){
 
 				const proveedor = response[0];

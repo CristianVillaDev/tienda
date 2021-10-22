@@ -15,6 +15,7 @@
 		<div class="formulario sombra-dark">
 			<h1>Iniciar Sesión</h1>
 			<form id="formulario">
+			Profe este es un usuario registrado usuario: user1  password: user1 
 				<div class="campos">
 					<label htmlFor="usuario">Usuario</label> <input type="text" id="usuario"
 						name="usuario" placeholder="Ingresa tu usuario" />

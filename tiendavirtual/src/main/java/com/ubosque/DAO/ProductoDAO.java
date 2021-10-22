@@ -100,7 +100,6 @@ public class ProductoDAO {
 	public void updateProduct(Productos producto) {
 		Connection connection = new Connection();
 		try {
-
 			String query = "select * from productos where codigo_producto = ?";
 			PreparedStatement statement = connection.getConnection().prepareStatement(query);
 			statement.setInt(1, producto.getCodigoProducto());

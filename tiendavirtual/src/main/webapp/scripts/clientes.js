@@ -25,13 +25,16 @@ $(document).ready(function(){
 		
 		let url = '';
 		let type= '';
+		let mensaje ='';
+		var getUrl = window.location;
+		var baseUrl = getUrl.protocol + "//"+getUrl.host+"/"+getUrl.pathname.split('/')[1];
 		
 		if(flag){
-			url = "http://localhost:8080/clientes/actualizar/"+cedula;
+			url = baseUrl+"/clientes/actualizar/"+cedula;
 			type= "PUT";
 			mensaje="Datos del Usuario Actualizados";	
 		}else{
-			url = "http://localhost:8080/clientes/guardar";
+			url = baseUrl+"/clientes/guardar";
 			type= "POST";
 			mensaje="Usuario Creado";
 		}
@@ -70,9 +73,11 @@ $(document).ready(function(){
 	}
 	
 	function listado(){
+		var getUrl = window.location;
+		var baseUrl = getUrl.protocol + "//"+getUrl.host+"/"+getUrl.pathname.split('/')[1];
 	   $.ajax({
 	        type: "GET",
-	        url: "http://localhost:8080/clientes/listar",  
+	        url: baseUrl+"/clientes/listar",  
 	        success: function(data) {
 				const clientes = data;
 				let template='';
@@ -98,10 +103,11 @@ $(document).ready(function(){
 	$(document).on('click','.borrar',(response)=> {
 		const cedula_p = $(this)[0].activeElement;
 		const cedula = $(cedula_p).attr('id');
-
+		var getUrl = window.location;
+		var baseUrl = getUrl.protocol + "//"+getUrl.host+"/"+getUrl.pathname.split('/')[1];
  		$.ajax({
 			type:"DELETE",
-			url:"http://localhost:8080/clientes/eliminar/"+cedula,
+			url:baseUrl+"/clientes/eliminar/"+cedula,
 			success: function(response){
 				listado();
 				alert("Datos del Cliente Borrados");
@@ -113,6 +119,9 @@ $(document).ready(function(){
 			const cedula = $(this)[0].activeElement;
 			const cedula_cliente = $(cedula).attr('id');
 			
+			var getUrl = window.location;
+			var baseUrl = getUrl.protocol + "//"+getUrl.host+"/"+getUrl.pathname.split('/')[1];
+			
 			var btnCancelar = $("#cancelarOP");
 			btnCancelar.css("display","block");
 			
@@ -120,7 +129,7 @@ $(document).ready(function(){
 	 	
 		 $.ajax({
 			type:"GET",
-			url:"http://localhost:8080/clientes/listar/"+cedula_cliente,
+			url: baseUrl+"/clientes/listar/"+cedula_cliente,																																																		
 			success: function(response){
 				
 				const cliente = response[0];
@@ -152,12 +161,15 @@ $(document).ready(function(){
 	
 	
 	$(document).on('click','.ver',(response)=> {
-			const cedula = $(this)[0].activeElement;
-			const cedula_usuario = $(cedula).attr('id');
+		const cedula = $(this)[0].activeElement;
+		const cedula_usuario = $(cedula).attr('id');
+			
+		var getUrl = window.location;
+		var baseUrl = getUrl.protocol + "//"+getUrl.host+"/"+getUrl.pathname.split('/')[1];
 			 	
 		 $.ajax({
 			type:"GET",
-			url:"http://localhost:8080/clientes/listar/"+cedula_usuario,
+			url: baseUrl+"/clientes/listar/"+cedula_usuario,
 			success: function(response){
 				 
 				const cliente = response[0];

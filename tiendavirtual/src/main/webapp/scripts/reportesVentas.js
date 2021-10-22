@@ -14,9 +14,11 @@ $(document).ready(function(){
 	
 	var contador = 0;
 	function listado(){
+		var getUrl = window.location;
+		var baseUrl = getUrl.protocol + "//"+getUrl.host+"/"+getUrl.pathname.split('/')[1];
 	   $.ajax({
 	        type: "GET",
-	        url: "http://localhost:8080/ventas/reporte/"+cedula,  
+	        url: baseUrl+"/ventas/reporte/"+cedula,  
 	        success: function(data) {
 				const reportes = data;
 				console.log(data);

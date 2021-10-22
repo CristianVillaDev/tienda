@@ -4,9 +4,11 @@ $(document).ready(function(){
 	listado();
 	
 	function listado(){
+		var getUrl = window.location;
+		var baseUrl = getUrl.protocol + "//"+getUrl.host+"/"+getUrl.pathname.split('/')[1];
 	   $.ajax({
 	        type: "GET",
-	        url: "http://localhost:8080/usuarios/listar",  
+	        url: baseUrl+"/usuarios/listar",  
 	        success: function(data) {
 				const usuarios = data;
 				let template='';
