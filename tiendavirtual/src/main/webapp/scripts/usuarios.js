@@ -98,7 +98,7 @@ $(document).ready(function(){
 
 	$(document).on('click','.borrar',(response)=> {
 		const nit_p = $(this)[0].activeElement;
-		const nitproveedor = $(nit_p).attr('id');
+		const cedula = $(nit_p).attr('id');
 		var getUrl = window.location;
 		var baseUrl = getUrl.protocol + "//"+getUrl.host+"/"+getUrl.pathname.split('/')[1];
  		$.ajax({
