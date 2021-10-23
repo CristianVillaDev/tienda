@@ -32,7 +32,7 @@ $(document).ready(function(){
 			mensaje="Datos del Usuario Actualizados";
 			
 		}else{
-			url = baseurl+"/usuarios/guardar";
+			url = baseUrl+"/usuarios/guardar";
 			type= "POST";
 			mensaje="Usuario Creado";
 		}
